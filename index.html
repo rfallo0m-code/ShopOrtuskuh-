@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopOrtuskuh - Sepatu Futsal Ortuseight Original</title>
+<style>
+  :root {
+    --primary: #ff3b1f;
+    --primary-dark: #d42a10;
+    --dark: #0d0d0d;
+    --dark-2: #1a1a1a;
+    --dark-3: #222;
+    --gray: #888;
+    --light: #f5f5f5;
+    --white: #fff;
+    --green: #00b894;
+    --blue: #0984e3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--white); overflow-x: hidden; }
+
+  /* ========== ANIMASI ========== */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes float { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-20px) rotate(-5deg); } }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,59,31,0.6); } 50% { box-shadow: 0 0 0 18px rgba(255,59,31,0); } }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes shine { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+  @keyframes popIn { 0% { transform: scale(0.7); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  @keyframes checkmark { 0% { stroke-dashoffset: 100; } 100% { stroke-dashoffset: 0; } }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.9s cubic-bezier(.2,.8,.2,1); }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+
+  /* ========== NAVBAR ========== */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 6%; background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.4s ease;
+  }
+  nav.scrolled { padding: 12px 6%; background: rgba(13,13,13,0.98); }
+  .logo {
+    font-size: 1.6rem; font-weight: 900; letter-spacing: -1px;
+    background: linear-gradient(90deg, #fff, var(--primary), #fff);
+    background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
+    color: transparent; animation: shine 4s linear infinite; cursor: pointer;
+  }
+  .logo span { color: var(--primary); -webkit-text-fill-color: var(--primary); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: #ccc; text-decoration: none; font-weight: 600; font-size: 0.95rem; position: relative; transition: color 0.3s; padding: 4px 0; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.35s cubic-bezier(.2,.8,.2,1); }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+  .cart-btn {
+    background: var(--primary); border: none; color: #fff; padding: 11px 22px;
+    border-radius: 30px; font-weight: 700; cursor: pointer; transition: all 0.3s;
+    position: relative; animation: pulse 2.5s infinite;
+  }
+  .cart-btn:hover { background: var(--primary-dark); transform: scale(1.06); }
+  .cart-btn #cartCount {
+    position: absolute; top: -8px; right: -8px; background: #fff; color: var(--primary);
+    font-size: 0.75rem; width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-weight: 800;
+  }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 26px; height: 3px; background: #fff; border-radius: 3px; transition: 0.3s; }
+
+  /* ========== HERO ========== */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: space-between;
+    padding: 120px 6% 60px; position: relative; overflow: hidden;
+    background: radial-gradient(circle at 75% 40%, rgba(255,59,31,0.22), transparent 55%), var(--dark);
+  }
+  .hero-text { max-width: 560px; animation: slideIn 1s ease both; }
+  .hero-text .tag {
+    display: inline-block; background: rgba(255,59,31,0.15); color: var(--primary);
+    padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 2px; margin-bottom: 22px; border: 1px solid rgba(255,59,31,0.3);
+  }
+  .hero-text h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.05; font-weight: 900; margin-bottom: 22px; letter-spacing: -2px; }
+  .hero-text h1 em { color: var(--primary); font-style: normal; }
+  .hero-text p { color: #aaa; font-size: 1.1rem; line-height: 1.7; margin-bottom: 36px; }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    padding: 15px 34px; border-radius: 40px; font-weight: 700; font-size: 1rem;
+    cursor: pointer; border: none; transition: all 0.35s cubic-bezier(.2,.8,.2,1);
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-4px) scale(1.03); box-shadow: 0 18px 35px rgba(255,59,31,0.4); }
+  .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.25); }
+  .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-4px); }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+
+  .hero-img { position: relative; animation: fadeIn 1.4s ease both; }
+  .hero-img img {
+    width: 520px; max-width: 90vw; border-radius: 30px;
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 40px 60px rgba(255,59,31,0.3));
+  }
+  .hero-blob {
+    position: absolute; width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, var(--primary), transparent 70%);
+    filter: blur(80px); opacity: 0.5; top: 50%; left: 50%;
+    transform: translate(-50%,-50%); z-index: -1; animation: pulse 4s infinite;
+  }
+
+  /* ========== SECTION ========== */
+  section { padding: 100px 6%; }
+  .section-head { text-align: center; margin-bottom: 60px; }
+  .section-head .sub { color: var(--primary); font-weight: 700; letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase; }
+  .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-top: 12px; letter-spacing: -1px; }
+  .section-head p { color: #999; margin-top: 14px; max-width: 550px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+  /* ========== KATEGORI ========== */
+  .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 24px; }
+  .cat-card { position: relative; border-radius: 24px; overflow: hidden; height: 280px; cursor: pointer; transition: all 0.5s cubic-bezier(.2,.8,.2,1); }
+  .cat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
+  .cat-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 60%); }
+  .cat-card .cat-info { position: absolute; bottom: 22px; left: 24px; z-index: 2; }
+  .cat-card .cat-info h3 { font-size: 1.4rem; font-weight: 800; }
+  .cat-card .cat-info span { color: var(--primary); font-weight: 600; font-size: 0.85rem; }
+  .cat-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(255,59,31,0.25); }
+  .cat-card:hover img { transform: scale(1.12); }
+
+  /* ========== PRODUK ========== */
+  .filter-bar { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
+  .filter-btn { padding: 10px 24px; border-radius: 30px; background: var(--dark-2); color: #bbb; border: 1px solid rgba(255,255,255,0.08); cursor: pointer; font-weight: 600; transition: all 0.3s; }
+  .filter-btn:hover, .filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-3px); }
+
+  .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 30px; }
+  .product-card { background: var(--dark-2); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); transition: all 0.5s cubic-bezier(.2,.8,.2,1); position: relative; }
+  .product-card:hover { transform: translateY(-12px); border-color: rgba(255,59,31,0.4); box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+  .product-img { height: 260px; overflow: hidden; position: relative; background: #111; }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
+  .product-card:hover .product-img img { transform: scale(1.1) rotate(3deg); }
+  .badge { position: absolute; top: 16px; left: 16px; background: var(--primary); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; z-index: 2; }
+  .badge.new { background: var(--green); }
+  .product-info { padding: 24px; }
+  .product-info .brand { color: var(--primary); font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; }
+  .product-info h3 { font-size: 1.15rem; margin: 8px 0; font-weight: 700; }
+  .product-info .desc { color: #888; font-size: 0.85rem; line-height: 1.6; margin-bottom: 16px; min-height: 42px; }
+  .price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .price { font-size: 1.3rem; font-weight: 900; color: #fff; }
+  .price small { font-size: 0.8rem; color: #777; text-decoration: line-through; margin-left: 8px; font-weight: 500; }
+  .stars { color: #ffc107; font-size: 0.85rem; }
+  .add-btn { width: 100%; padding: 13px; border-radius: 14px; background: rgba(255,59,31,0.12); color: var(--primary); border: 1px solid rgba(255,59,31,0.35); font-weight: 700; cursor: pointer; transition: all 0.3s; }
+  .add-btn:hover { background: var(--primary); color: #fff; transform: scale(1.02); }
+
+  /* ========== SIZE GUIDE ========== */
+  .size-section { background: var(--dark-2); border-radius: 30px; padding: 60px 6%; }
+  .size-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 40px; align-items: center; }
+  .size-table { width: 100%; border-collapse: collapse; }
+  .size-table th, .size-table td { padding: 14px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .size-table th { color: var(--primary); font-weight: 700; }
+  .size-table tr:hover td { background: rgba(255,59,31,0.08); }
+  .care-tips li { list-style: none; padding: 12px 0 12px 34px; position: relative; color: #bbb; line-height: 1.6; }
+  .care-tips li::before { content: '✓'; position: absolute; left: 0; color: var(--primary); font-weight: 900; }
+
+  /* ========== TESTIMONI ========== */
+  .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 26px; }
+  .testi-card { background: var(--dark-2); border-radius: 24px; padding: 30px; border: 1px solid rgba(255,255,255,0.06); transition: all 0.4s; }
+  .testi-card:hover { transform: translateY(-8px); border-color: rgba(255,59,31,0.3); }
+  .testi-card .quote { font-size: 2.5rem; color: var(--primary); line-height: 1; }
+  .testi-card p { color: #bbb; line-height: 1.7; margin: 14px 0 20px; font-style: italic; }
+  .testi-user { display: flex; align-items: center; gap: 12px; }
+  .testi-user .avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; }
+  .testi-user h4 { font-size: 0.95rem; }
+  .testi-user span { color: #777; font-size: 0.8rem; }
+
+  /* ========== CART DRAWER ========== */
+  .cart-drawer { position: fixed; top: 0; right: -420px; width: 400px; max-width: 92vw; height: 100vh; background: var(--dark-2); z-index: 2000; transition: right 0.45s cubic-bezier(.2,.8,.2,1); padding: 30px; display: flex; flex-direction: column; border-left: 1px solid rgba(255,255,255,0.1); }
+  .cart-drawer.open { right: 0; }
+  .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; }
+  .cart-header h2 { font-size: 1.4rem; }
+  .close-cart { background: none; border: none; color: #fff; font-size: 1.6rem; cursor: pointer; transition: 0.3s; }
+  .close-cart:hover { color: var(--primary); transform: rotate(90deg); }
+  .cart-items { flex: 1; overflow-y: auto; }
+  .cart-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .cart-item img { width: 70px; height: 70px; object-fit: cover; border-radius: 14px; }
+  .cart-item-info { flex: 1; }
+  .cart-item-info h4 { font-size: 0.95rem; margin-bottom: 4px; }
+  .cart-item-info span { color: var(--primary); font-weight: 700; }
+  .cart-item-info .qty { color: #888; font-size: 0.82rem; }
+  .cart-item button { background: none; border: none; color: #ff4757; cursor: pointer; font-size: 1.1rem; align-self: flex-start; }
+  .cart-empty { text-align: center; color: #666; padding: 40px 0; }
+  .cart-footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+  .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800; margin-bottom: 18px; }
+  .cart-total span:last-child { color: var(--primary); }
+  .checkout-btn { width: 100%; padding: 16px; font-size: 1rem; }
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 1500; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+  .overlay.show { opacity: 1; pointer-events: all; }
+
+  /* ========== CHECKOUT MODAL ========== */
+  .modal {
+    position: fixed; inset: 0; z-index: 2500;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    opacity: 0; pointer-events: none; transition: opacity 0.35s;
+  }
+  .modal.show { opacity: 1; pointer-events: all; }
+  .modal-content {
+    background: var(--dark-2); border-radius: 24px; width: 100%; max-width: 640px;
+    max-height: 92vh; overflow-y: auto; border: 1px solid rgba(255,255,255,0.1);
+    transform: scale(0.9); transition: transform 0.35s; position: relative;
+  }
+  .modal.show .modal-content { transform: scale(1); }
+  .modal-content::-webkit-scrollbar { width: 6px; }
+  .modal-content::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+  .modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 28px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky; top: 0; background: var(--dark-2); z-index: 3; border-radius: 24px 24px 0 0;
+  }
+  .modal-header h2 { font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+  .modal-close { background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
+  .modal-close:hover { color: var(--primary); transform: rotate(90deg); }
+  .modal-body { padding: 24px 28px 28px; }
+
+  /* Step indicator */
+  .steps { display: flex; justify-content: space-between; margin-bottom: 30px; position: relative; }
+  .steps::before {
+    content: ''; position: absolute; top: 18px; left: 12%; right: 12%; height: 2px;
+    background: rgba(255,255,255,0.1); z-index: 1;
+  }
+  .steps-progress {
+    position: absolute; top: 18px; left: 12%; height: 2px;
+    background: var(--primary); z-index: 1; transition: width 0.4s; width: 0%;
+  }
+  .step { display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 2; flex: 1; }
+  .step-circle {
+    width: 38px; height: 38px; border-radius: 50%; background: var(--dark-3);
+    border: 2px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9rem; color: #777; transition: all 0.4s;
+  }
+  .step.active .step-circle { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 0 0 6px rgba(255,59,31,0.2); }
+  .step.done .step-circle { background: var(--green); border-color: var(--green); color: #fff; }
+  .step span { font-size: 0.72rem; color: #777; font-weight: 600; text-align: center; }
+  .step.active span { color: var(--primary); }
+  .step.done span { color: var(--green); }
+
+  /* Form */
+  .form-step { display: none; animation: fadeUp 0.5s ease; }
+  .form-step.active { display: block; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 0.85rem; color: #bbb; font-weight: 600; margin-bottom: 8px; }
+  .form-group label .req { color: var(--primary); }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%; padding: 13px 16px; border-radius: 12px;
+    background: var(--dark-3); border: 1px solid rgba(255,255,255,0.1);
+    color: #fff; font-size: 0.95rem; font-family: inherit;
+    transition: all 0.3s; outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--primary); background: #262626; box-shadow: 0 0 0 3px rgba(255,59,31,0.15); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-group.error input,
+  .form-group.error textarea,
+  .form-group.error select { border-color: #ff4757; background: rgba(255,71,87,0.08); }
+  .form-group .err-msg { color: #ff4757; font-size: 0.78rem; margin-top: 6px; display: none; }
+  .form-group.error .err-msg { display: block; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* Pilihan kurir */
+  .option-list { display: flex; flex-direction: column; gap: 12px; }
+  .option {
+    display: flex; align-items: center; gap: 14px; padding: 16px;
+    background: var(--dark-3); border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 14px; cursor: pointer; transition: all 0.3s;
+  }
+  .option:hover { border-color: rgba(255,59,31,0.5); transform: translateX(4px); }
+  .option.selected { border-color: var(--primary); background: rgba(255,59,31,0.1); }
+  .option input[type="radio"] { display: none; }
+  .option-icon {
+    width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.05);
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+  }
+  .option.selected .option-icon { background: var(--primary); }
+  .option-info { flex: 1; }
+  .option-info h4 { font-size: 0.95rem; margin-bottom: 2px; }
+  .option-info span { color: #888; font-size: 0.8rem; }
+  .option-price { color: var(--primary); font-weight: 800; font-size: 0.9rem; text-align: right; }
+  .option-price small { display: block; color: #888; font-weight: 500; font-size: 0.72rem; }
+
+  /* Ringkasan pesanan */
+  .summary-box {
+    background: var(--dark-3); border-radius: 16px; padding: 20px; margin-top: 20px;
+    border: 1px dashed rgba(255,255,255,0.15);
+  }
+  .summary-box h4 { font-size: 0.9rem; color: #aaa; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; color: #bbb; }
+  .summary-row.total { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px; padding-top: 14px; font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .summary-row.total span:last-child { color: var(--primary); }
+
+  /* Metode pembayaran */
+  .pay-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 12px; margin-bottom: 20px; }
+  .pay-method {
+    padding: 18px 12px; border-radius: 14px; background: var(--dark-3);
+    border: 2px solid rgba(255,255,255,0.08); cursor: pointer; transition: all 0.3s;
+    text-align: center;
+  }
+  .pay-method:hover { border-color: rgba(255,59,31,0.5); transform: translateY(-4px); }
+  .pay-method.selected { border-color: var(--primary); background: rgba(255,59,31,0.1); }
+  .pay-method .icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .pay-method h5 { font-size: 0.85rem; font-weight: 700; }
+  .pay-method small { color: #888; font-size: 0.72rem; }
+
+  /* Detail pembayaran */
+  .pay-detail {
+    background: linear-gradient(135deg, rgba(255,59,31,0.1), rgba(255,59,31,0.03));
+    border: 1px solid rgba(255,59,31,0.3); border-radius: 16px; padding: 20px;
+    margin-top: 16px; animation: fadeUp 0.4s;
+  }
+  .pay-detail h4 { color: var(--primary); margin-bottom: 14px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+  .va-number {
+    background: var(--dark); padding: 16px; border-radius: 12px; text-align: center;
+    font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 3px;
+    font-weight: 800; color: #fff; margin: 12px 0;
+    border: 1px dashed rgba(255,255,255,0.2);
+  }
+  .copy-btn {
+    padding: 8px 18px; background: var(--primary); color: #fff; border: none;
+    border-radius: 20px; font-weight: 700; font-size: 0.8rem; cursor: pointer;
+    transition: 0.3s; display: block; margin: 0 auto;
+  }
+  .copy-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
+  .pay-instruction { font-size: 0.82rem; color: #bbb; line-height: 1.7; margin-top: 14px; }
+  .pay-instruction ol { padding-left: 20px; }
+
+  /* Sukses */
+  .success-screen { text-align: center; padding: 20px 0; animation: popIn 0.6s; }
+  .success-icon {
+    width: 100px; height: 100px; margin: 0 auto 20px; border-radius: 50%;
+    background: rgba(0,184,148,0.15); display: flex; align-items: center; justify-content: center;
+    animation: pulse 2s infinite; box-shadow: 0 0 0 0 rgba(0,184,148,0.6);
+  }
+  .success-icon svg { width: 55px; height: 55px; }
+  .success-icon svg path { stroke: var(--green); stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; animation: checkmark 0.8s ease forwards; }
+  .success-screen h2 { font-size: 1.6rem; margin-bottom: 10px; }
+  .success-screen > p { color: #999; margin-bottom: 24px; }
+  .invoice-box {
+    background: var(--dark-3); border-radius: 16px; padding: 20px; margin-bottom: 20px; text-align: left;
+    border: 1px dashed rgba(255,255,255,0.15);
+  }
+  .invoice-box .inv-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; color: #bbb; }
+  .invoice-box .inv-row strong { color: #fff; }
+  .invoice-box .inv-row strong.highlight { color: var(--primary); font-size: 1.05rem; }
+
+  /* Modal footer */
+  .modal-footer {
+    display: flex; gap: 12px; margin-top: 26px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .modal-footer .btn { flex: 1; padding: 14px; font-size: 0.95rem; }
+  .btn-secondary { background: var(--dark-3); color: #ccc; border: 1px solid rgba(255,255,255,0.1); }
+  .btn-secondary:hover { background: #2a2a2a; transform: none; box-shadow: none; }
+
+  /* ========== FOOTER ========== */
+  footer { background: #080808; padding: 70px 6% 30px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 40px; margin-bottom: 50px; }
+  .footer-grid h4 { margin-bottom: 20px; font-size: 1.1rem; }
+  .footer-grid p, .footer-grid a { color: #888; line-height: 2; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+  .footer-grid a:hover { color: var(--primary); }
+  .footer-bottom { text-align: center; color: #555; font-size: 0.85rem; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  /* ========== TOAST ========== */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(120px);
+    background: var(--primary); color: #fff; padding: 15px 30px; border-radius: 40px;
+    font-weight: 700; z-index: 4000; transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
+    box-shadow: 0 15px 40px rgba(255,59,31,0.5); text-align: center; max-width: 90vw;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.success { background: var(--green); box-shadow: 0 15px 40px rgba(0,184,148,0.5); }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .nav-links {
+      position: fixed; top: 0; right: -100%; height: 100vh; width: 280px;
+      background: var(--dark-2); flex-direction: column; padding: 90px 30px;
+      transition: right 0.45s cubic-bezier(.2,.8,.2,1); border-left: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-links.open { right: 0; }
+    .hamburger { display: flex; z-index: 1100; }
+    .hero { flex-direction: column; text-align: center; padding-top: 130px; gap: 50px; }
+    .hero-text { max-width: 100%; }
+    .hero-btns { justify-content: center; }
+    .hero-img img { width: 90vw; }
+    section { padding: 70px 6%; }
+    .form-row { grid-template-columns: 1fr; }
+    .step span { font-size: 0.65rem; }
+    .modal-body { padding: 20px 18px 24px; }
+    .modal-header { padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="navbar">
+  <div class="logo" onclick="location.reload()">Shop<span>Ortus</span>kuh</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#produk">Produk</a></li>
+    <li><a href="#size">Panduan Ukuran</a></li>
+    <li><a href="#testimoni">Testimoni</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Keranjang <span id="cartCount">0</span>
+    </button>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <span class="tag">⚡ ORTUSEIGHT RESMI</span>
+    <h1>Kuasai Lapangan dengan <em>Sepatu Futsal</em> Terbaik</h1>
+    <p>Koleksi sepatu futsal Ortuseight original dengan teknologi Cumulus Foam, Ortshox, dan Ort-Curve. Nyaman, responsif, dan bikin gocekan makin lincah.</p>
+    <div class="hero-btns">
+      <a href="#produk" class="btn btn-primary">Belanja Sekarang</a>
+      <a href="#size" class="btn btn-outline">Panduan Ukuran</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <div class="hero-blob"></div>
+    <img src="https://ortuseightdev.id/image-web-commerce/img/categoryimg/WEB-BANNER-CATEGORY-PRODUCT_FUTSAL2.jpg" alt="Sepatu Futsal Ortuseight">
+  </div>
+</section>
+
+<!-- ============ KATEGORI ============ -->
+<section id="kategori">
+  <div class="section-head reveal">
+    <div class="sub">Koleksi Populer</div>
+    <h2>Seri Unggulan Ortuseight</h2>
+    <p>Pilih seri sepatu futsal yang paling cocok dengan gaya permainanmu.</p>
+  </div>
+  <div class="categories">
+    <div class="cat-card reveal" onclick="filterAndScroll('catalyst')">
+      <img src="https://ortuseightdev.id:8030/assets/dist/productimg/11020783_CATALYST_EMPIRE_V2_IN_WHITE_Artboard_1.jpg" alt="Catalyst">
+      <div class="cat-info"><h3>Catalyst</h3><span>Seri Tercepat →</span></div>
+    </div>
+    <div class="cat-card reveal" onclick="filterAndScroll('jogosala')">
+      <img src="https://ortuseightdev.id:8030/assets/dist/productimg/11020787_JOGOSALA_VOLTA_V3_BLACK_Artboard_1.jpg" alt="Jogosala">
+      <div class="cat-info"><h3>Jogosala</h3><span>Kenyamanan Maksimal →</span></div>
+    </div>
+    <div class="cat-card reveal" onclick="filterAndScroll('horizon')">
+      <img src="https://ortuseightdev.id:8030/assets/dist/productimg/11020739_HORIZON_TF_-_AQUA_LIME_WHITEArtboard_1.jpg" alt="Horizon">
+      <div class="cat-info"><h3>Horizon</h3><span>Pivot & Gocekan →</span></div>
+    </div>
+    <div class="cat-card reveal" onclick="filterAndScroll('havoc')">
+      <img src="https://ortuseightdev.id:8030/assets/dist/productimg/HAVOC_IN_11020623Artboard_1.jpg" alt="Havoc">
+      <div class="cat-info"><h3>Havoc</h3><span>Fleksibel & Ringan →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUK ============ -->
+<section id="produk">
+  <div class="section-head reveal">
+    <div class="sub">Katalog Produk</div>
+    <h2>Sepatu Futsal Ortuseight</h2>
+    <p>Semua produk 100% original & bergaransi resmi.</p>
+  </div>
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" data-cat="all" onclick="filterProducts('all', this)">Semua</button>
+    <button class="filter-btn" data-cat="jogosala" onclick="filterProducts('jogosala', this)">Jogosala</button>
+    <button class="filter-btn" data-cat="horizon" onclick="filterProducts('horizon', this)">Horizon</button>
+    <button class="filter-btn" data-cat="havoc" onclick="filterProducts('havoc', this)">Havoc</button>
+    <button class="filter-btn" data-cat="catalyst" onclick="filterProducts('catalyst', this)">Catalyst</button>
+  </div>
+  <div class="products" id="productGrid"></div>
+</section>
+
+<!-- ============ SIZE GUIDE ============ -->
+<section id="size">
+  <div class="section-head reveal">
+    <div class="sub">Panduan Lengkap</div>
+    <h2>Ukuran & Perawatan Sepatu</h2>
+    <p>Pastikan ukuran yang tepat agar sepatu futsalmu nyaman dipakai.</p>
+  </div>
+  <div class="size-section reveal">
+    <div class="size-grid">
+      <div>
+        <h3 style="margin-bottom:20px;font-size:1.4rem;">📏 Tabel Konversi Ukuran</h3>
+        <table class="size-table">
+          <tr><th>EUR</th><th>UK</th><th>US</th><th>CM</th></tr>
+          <tr><td>39</td><td>6</td><td>7</td><td>24.5</td></tr>
+          <tr><td>40</td><td>6.5</td><td>7.5</td><td>25.0</td></tr>
+          <tr><td>41</td><td>7.5</td><td>8.5</td><td>26.0</td></tr>
+          <tr><td>42</td><td>8</td><td>9</td><td>26.5</td></tr>
+          <tr><td>43</td><td>9</td><td>10</td><td>27.5</td></tr>
+          <tr><td>44</td><td>9.5</td><td>10.5</td><td>28.0</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3 style="margin-bottom:20px;font-size:1.4rem;">🧼 Tips Perawatan Sepatu</h3>
+        <ul class="care-tips">
+          <li>Bersihkan upper sintetis dengan kain lembut & air sabun hangat.</li>
+          <li>Jangan rendam sepatu di dalam air dalam waktu lama.</li>
+          <li>Keringkan di tempat teduh, hindari sinar matahari langsung.</li>
+          <li>Gunakan shoe tree agar bentuk sepatu tetap terjaga.</li>
+          <li>Simpan di tempat kering & berventilasi baik.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONI ============ -->
+<section id="testimoni">
+  <div class="section-head reveal">
+    <div class="sub">Review Pembeli</div>
+    <h2>Apa Kata Mereka?</h2>
+    <p>Ribuan pemain futsal sudah mempercayai ShopOrtuskuh.</p>
+  </div>
+  <div class="testimonials">
+    <div class="testi-card reveal">
+      <div class="quote">"</div>
+      <p>Sepatu Jogosala Strive-nya empuk banget! Cumulus Foam beneran kerasa pas dipakai main. Pengiriman cepat, packing rapi.</p>
+      <div class="testi-user">
+        <div class="avatar">R</div>
+        <div><h4>Rizky Pratama</h4><span>Jakarta</span></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="quote">"</div>
+      <p>Horizon IN enak buat pivot, Ort-Curve-nya bikin gerakan lebih lincah. Ukuran sesuai panduan, nggak perlu tukar.</p>
+      <div class="testi-user">
+        <div class="avatar">A</div>
+        <div><h4>Andi Saputra</h4><span>Bandung</span></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="quote">"</div>
+      <p>Havoc IN ringan dan fleksibel, QuickFit-nya langsung nyaman di kaki. Sudah beli 2x di sini, mantap!</p>
+      <div class="testi-user">
+        <div class="avatar">D</div>
+        <div><h4>Dimas Ardiansyah</h4><span>Surabaya</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="kontak">
+  <div class="footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom:18px;">Shop<span>Ortus</span>kuh</div>
+      <p>Penjual resmi sepatu futsal Ortuseight original. Kualitas terjamin, harga bersaing, pengiriman ke seluruh Indonesia.</p>
+    </div>
+    <div>
+      <h4>Navigasi</h4>
+      <a href="#home">Home</a><br>
+      <a href="#produk">Produk</a><br>
+      <a href="#size">Panduan Ukuran</a><br>
+      <a href="#testimoni">Testimoni</a>
+    </div>
+    <div>
+      <h4>Layanan</h4>
+      <a href="#">Kebijakan Pengembalian</a><br>
+      <a href="#">Lacak Pesanan</a><br>
+      <a href="#">Tentang Kami</a><br>
+      <a href="#">FAQ</a>
+    </div>
+    <div>
+      <h4>Hubungi Kami</h4>
+      <p>📱 WhatsApp: 0838-9441-8026</p>
+      <p>✉️ cs@shoportuskuh.id</p>
+      <p>📍 Tangerang, Indonesia</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 ShopOrtuskuh. All rights reserved. | Original Ortuseight Store</div>
+</footer>
+
+<!-- ============ OVERLAY ============ -->
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>🛒 Keranjang</h2>
+    <button class="close-cart" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Keranjang masih kosong</div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">Rp 0</span></div>
+    <button class="btn btn-primary checkout-btn" onclick="openCheckout()">💳 Checkout Sekarang</button>
+  </div>
+</div>
+
+<!-- ============ CHECKOUT MODAL ============ -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">💳 Checkout</h2>
+      <button class="modal-close" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Step Indicator -->
+      <div class="steps" id="stepsBar">
+        <div class="steps-progress" id="stepsProgress"></div>
+        <div class="step active" data-step="1">
+          <div class="step-circle">1</div>
+          <span>Data Pembeli</span>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-circle">2</div>
+          <span>Pembayaran</span>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-circle">3</div>
+          <span>Selesai</span>
+        </div>
+      </div>
+
+      <!-- STEP 1: DATA PEMBELI -->
+      <div class="form-step active" id="step1">
+        <div class="form-group" id="fg-nama">
+          <label>Nama Lengkap <span class="req">*</span></label>
+          <input type="text" id="buyerName" placeholder="Contoh: Budi Santoso" autocomplete="name">
+          <div class="err-msg">Nama wajib diisi minimal 3 karakter</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" id="fg-phone">
+            <label>No. WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="buyerPhone" placeholder="08xxxxxxxxxx" autocomplete="tel">
+            <div class="err-msg">Nomor HP tidak valid (min 10 digit)</div>
+          </div>
+          <div class="form-group" id="fg-email">
+            <label>Email</label>
+            <input type="email" id="buyerEmail" placeholder="email@contoh.com" autocomplete="email">
+            <div class="err-msg">Format email tidak valid</div>
+          </div>
+        </div>
+        <div class="form-group" id="fg-address">
+          <label>Alamat Lengkap <span class="req">*</span></label>
+          <textarea id="buyerAddress" placeholder="Jalan, No. Rumah, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos"></textarea>
+          <div class="err-msg">Alamat wajib diisi minimal 10 karakter</div>
+        </div>
+        <div class="form-group">
+          <label>Catatan (opsional)</label>
+          <input type="text" id="buyerNote" placeholder="Contoh: Tolong bubble wrap">
+        </div>
+
+        <div class="form-group">
+          <label>Pilih Kurir Pengiriman <span class="req">*</span></label>
+          <div class="option-list" id="courierList">
+            <label class="option selected" data-courier="jne" data-cost="18000">
+              <input type="radio" name="courier" value="jne" checked>
+              <div class="option-icon">📦</div>
+              <div class="option-info">
+                <h4>JNE Reguler</h4>
+                <span>Estimasi 2-4 hari</span>
+              </div>
+              <div class="option-price">Rp 18.000</div>
+            </label>
+            <label class="option" data-courier="jnt" data-cost="16000">
+              <input type="radio" name="courier" value="jnt">
+              <div class="option-icon">🚚</div>
+              <div class="option-info">
+                <h4>J&T Express</h4>
+                <span>Estimasi 2-5 hari</span>
+              </div>
+              <div class="option-price">Rp 16.000</div>
+            </label>
+            <label class="option" data-courier="sicepat" data-cost="15000">
+              <input type="radio" name="courier" value="sicepat">
+              <div class="option-icon">✈️</div>
+              <div class="option-info">
+                <h4>SiCepat Reguler</h4>
+                <span>Estimasi 2-4 hari</span>
+              </div>
+              <div class="option-price">Rp 15.000</div>
+            </label>
+            <label class="option" data-courier="gosend" data-cost="25000">
+              <input type="radio" name="courier" value="gosend">
+              <div class="option-icon">⚡</div>
+              <div class="option-info">
+                <h4>GoSend Same Day</h4>
+                <span>Estimasi hari ini (khusus Jabodetabek)</span>
+              </div>
+              <div class="option-price">Rp 25.000</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="summary-box">
+          <h4>Ringkasan Pesanan</h4>
+          <div id="orderSummary"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeCheckout()">Batal</button>
+          <button class="btn btn-primary" onclick="goToStep2()">Lanjut ke Pembayaran →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: METODE PEMBAYARAN -->
+      <div class="form-step" id="step2">
+        <p style="color:#bbb;margin-bottom:18px;font-size:0.9rem;">Pilih metode pembayaran yang kamu inginkan:</p>
+        <div class="pay-methods" id="payMethods">
+          <div class="pay-method selected" data-method="bca">
+            <div class="icon">🏦</div>
+            <h5>BCA VA</h5>
+            <small>Virtual Account</small>
+          </div>
+          <div class="pay-method" data-method="bni">
+            <div class="icon">🏦</div>
+            <h5>BNI VA</h5>
+            <small>Virtual Account</small>
+          </div>
+          <div class="pay-method" data-method="mandiri">
+            <div class="icon">🏦</div>
+            <h5>Mandiri VA</h5>
+            <small>Virtual Account</small>
+          </div>
+          <div class="pay-method" data-method="gopay">
+            <div class="icon">💚</div>
+            <h5>GoPay</h5>
+            <small>E-Wallet</small>
+          </div>
+          <div class="pay-method" data-method="ovo">
+            <div class="icon">💜</div>
+            <h5>OVO</h5>
+            <small>E-Wallet</small>
+          </div>
+          <div class="pay-method" data-method="qris">
+            <div class="icon">📱</div>
+            <h5>QRIS</h5>
+            <small>Scan QR</small>
+          </div>
+          <div class="pay-method" data-method="cod">
+            <div class="icon">💵</div>
+            <h5>COD</h5>
+            <small>Bayar di tempat</small>
+          </div>
+        </div>
+
+        <div id="payDetail"></div>
+
+        <div class="summary-box">
+          <h4>Total Pembayaran</h4>
+          <div class="summary-row"><span>Subtotal Produk</span><span id="sumSubtotal">Rp 0</span></div>
+          <div class="summary-row"><span>Ongkir (<span id="sumCourierName">JNE Reguler</span>)</span><span id="sumShipping">Rp 0</span></div>
+          <div class="summary-row"><span>Biaya Layanan</span><span id="sumFee">Rp 0</span></div>
+          <div class="summary-row total"><span>Total Bayar</span><span id="sumTotal">Rp 0</span></div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="goToStep(1)">← Kembali</button>
+          <button class="btn btn-primary" onclick="processPayment()" id="payBtn">Bayar Sekarang 💳</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: SUKSES -->
+      <div class="form-step" id="step3">
+        <div class="success-screen">
+          <div class="success-icon">
+            <svg viewBox="0 0 52 52">
+              <path d="M14 27 L22 35 L38 19"/>
+            </svg>
+          </div>
+          <h2 id="successTitle">Pembayaran Berhasil! 🎉</h2>
+          <p id="successMsg">Pesanan kamu sedang diproses. Terima kasih sudah belanja di ShopOrtuskuh!</p>
+
+          <div class="invoice-box" id="invoiceBox">
+            <div class="inv-row"><span>No. Invoice</span><strong id="invNumber">-</strong></div>
+            <div class="inv-row"><span>Nama</span><strong id="invName">-</strong></div>
+            <div class="inv-row"><span>No. HP</span><strong id="invPhone">-</strong></div>
+            <div class="inv-row"><span>Kurir</span><strong id="invCourier">-</strong></div>
+            <div class="inv-row"><span>Pembayaran</span><strong id="invMethod">-</strong></div>
+            <div class="inv-row"><span>Total</span><strong class="highlight" id="invTotal">Rp 0</strong></div>
+          </div>
+
+          <p style="font-size:0.85rem;color:#888;margin-bottom:18px;">
+            💬 Konfirmasi & bukti bayar akan dikirim ke WhatsApp kamu.
+          </p>
+
+          <button class="btn btn-primary" style="width:100%;" onclick="finishOrder()">Selesai & Tutup</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast">Produk ditambahkan ke keranjang!</div>
+
+<script>
+/* ============ DATA PRODUK ============ */
+const products = [
+  { id: 1, name: "Jogosala Strive", category: "jogosala", price: 399000, oldPrice: 499000, badge: "BEST SELLER", badgeClass: "", desc: "Teknologi Cumulus Foam & Ortshox untuk kenyamanan maksimal.", img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQzbzbxOKRt2h6w4v9HHcG-Y9D7ocX8LmGSpu0BXYXfy21Dm1kIhQrw_zopUtRfyZQq3HrxRCm1xv6nhvshTHyKzy9eUguI32LO-3XuWtPBQjE6xZqpHOiL", rating: 5 },
+  { id: 2, name: "Horizon IN", category: "horizon", price: 329000, oldPrice: 399000, badge: "NEW", badgeClass: "new", desc: "Ort-Curve mempermudah pivot & gocekan lincah di lapangan.", img: "https://ortuseightdev.id:8030/assets/dist/productimg/HORIZON_IN_11020337_11.jpg", rating: 5 },
+  { id: 3, name: "Havoc IN", category: "havoc", price: 429000, oldPrice: 549000, badge: "DISKON 22%", badgeClass: "", desc: "Upper sintetis QuickFit fleksibel mengikuti bentuk kaki.", img: "https://ortuseightdev.id:8030/assets/dist/productimg/HAVOC_IN_11020623Artboard_1.jpg", rating: 4 },
+  { id: 4, name: "Catalyst Imperium IN", category: "catalyst", price: 499000, oldPrice: 599000, badge: "PREMIUM", badgeClass: "new", desc: "Ringan & responsif untuk pemain cepat dan agresif.", img: "https://ortuseightdev.id:8030/assets/dist/productimg/11020772_CATALYST_IMPERIUM_IN_-_ARGENT_GREY_LAVENDERArtboard_1.jpg", rating: 5 },
+  { id: 5, name: "Jogosala Vanquish", category: "jogosala", price: 599000, oldPrice: 699000, badge: "", badgeClass: "", desc: "Sepatu futsal dengan desain modern yang mendukung pergerakan cepat, kontrol bola, dan grip saat bermain.", img: "https://ortuseightdev.id:8030/assets/dist/productimg/11020691_JOGOSALA_VANQUISH_Artboard_1.jpg", rating: 5 },
+  { id: 6, name: "Catalyst Legion V6 IN", category: "catalyst", price: 559000, oldPrice: 649000, badge: "QUICK-FIT", badgeClass: "", desc: "Memberikan kontrol bola, kelincahan, dan kenyamanan saat bermain.", img: "https://ortuseightdev.id:8030/assets/dist/productimg/11020771_CATALYST_LEGION_V6_IN_-_RHINO_GREY_PEACH_GOLDArtboard_1.jpg", rating: 4 }
+];
+
+/* ============ STATE ============ */
+const productGrid = document.getElementById('productGrid');
+let cart = [];
+let currentStep = 1;
+let selectedCourier = { code: 'jne', name: 'JNE Reguler', cost: 18000 };
+let selectedPayment = 'bca';
+
+const SERVICE_FEE = 2000;
+
+const paymentLabels = {
+  bca: 'BCA Virtual Account',
+  bni: 'BNI Virtual Account',
+  mandiri: 'Mandiri Virtual Account',
+  gopay: 'GoPay E-Wallet',
+  ovo: 'OVO E-Wallet',
+  qris: 'QRIS',
+  cod: 'COD (Bayar di Tempat)'
+};
+
+/* ============ RENDER PRODUK ============ */
+function renderProducts(filter = 'all') {
+  productGrid.innerHTML = '';
+  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+  filtered.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'product-card reveal';
+    card.style.transitionDelay = (i * 0.08) + 's';
+    card.innerHTML = `
+      <div class="product-img">
+        ${p.badge ? `<span class="badge ${p.badgeClass}">${p.badge}</span>` : ''}
+        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x400/1a1a1a/ff3b1f?text=Ortuseight'">
+      </div>
+      <div class="product-info">
+        <div class="brand">ORTUSEIGHT</div>
+        <h3>${p.name}</h3>
+        <p class="desc">${p.desc}</p>
+        <div class="price-row">
+          <div class="price">Rp ${p.price.toLocaleString('id-ID')}<small>Rp ${p.oldPrice.toLocaleString('id-ID')}</small></div>
+          <div class="stars">${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}</div>
+        </div>
+        <button class="add-btn" onclick="addToCart(${p.id})">+ Tambah ke Keranjang</button>
+      </div>
+    `;
+    productGrid.appendChild(card);
+  });
+  observeReveal();
+}
+
+/* ============ FILTER ============ */
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(cat);
+}
+
+function filterAndScroll(cat) {
+  const btn = document.querySelector(`.filter-btn[data-cat="${cat}"]`);
+  if (btn) filterProducts(cat, btn);
+  document.getElementById('produk').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ============ CART ============ */
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(item => item.id === id);
+  if (existing) existing.qty++;
+  else cart.push({ ...product, qty: 1 });
+  updateCart();
+  showToast(`${product.name} ditambahkan!`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  updateCart();
+}
+
+function getCartTotal() {
+  return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+}
+
+function updateCart() {
+  const cartCount = document.getElementById('cartCount');
+  const cartItems = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  cartCount.textContent = totalQty;
+
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<div class="cart-empty">Keranjang masih kosong</div>';
+    cartTotal.textContent = 'Rp 0';
+    return;
+  }
+
+  cartItems.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img src="${item.img}" alt="${item.name}">
+      <div class="cart-item-info">
+        <h4>${item.name}</h4>
+        <span>Rp ${(item.price * item.qty).toLocaleString('id-ID')}</span>
+        <div class="qty">Qty: ${item.qty}</div>
+      </div>
+      <button onclick="removeFromCart(${item.id})">🗑️</button>
+    </div>
+  `).join('');
+
+  cartTotal.textContent = 'Rp ' + getCartTotal().toLocaleString('id-ID');
+}
+
+/* ============ DRAWER & MODAL CONTROL ============ */
+function toggleCart() {
+  document.getElementById('cartDrawer').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+function closeAll() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('checkoutModal').classList.remove('show');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+/* ============ CHECKOUT FLOW ============ */
+function openCheckout() {
+  if (cart.length === 0) {
+    showToast('Keranjang masih kosong!');
+    return;
+  }
+  // Tutup drawer, buka modal
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('checkoutModal').classList.add('show');
+  document.getElementById('overlay').classList.add('show');
+  goToStep(1);
+  renderOrderSummary();
+}
+
+function closeCheckout() {
+  document.getElementById('checkoutModal').classList.remove('show');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+function goToStep(step) {
+  currentStep = step;
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + step).classList.add('active');
+
+  // Update step indicator
+  document.querySelectorAll('.step').forEach((el, i) => {
+    el.classList.remove('active', 'done');
+    if (i + 1 < step) el.classList.add('done');
+    else if (i + 1 === step) el.classList.add('active');
+  });
+  const progress = ((step - 1) / 2) * 76; // 76% = jarak antar step
+  document.getElementById('stepsProgress').style.width = progress + '%';
+
+  // Scroll ke atas modal
+  document.querySelector('.modal-content').scrollTop = 0;
+}
+
+/* ============ VALIDASI STEP 1 ============ */
+function validateStep1() {
+  let valid = true;
+  const name = document.getElementById('buyerName').value.trim();
+  const phone = document.getElementById('buyerPhone').value.trim();
+  const email = document.getElementById('buyerEmail').value.trim();
+  const address = document.getElementById('buyerAddress').value.trim();
+
+  clearErrors();
+
+  if (name.length < 3) { setError('fg-nama'); valid = false; }
+  if (!/^[0-9+\-\s]{10,}$/.test(phone)) { setError('fg-phone'); valid = false; }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('fg-email'); valid = false; }
+  if (address.length < 10) { setError('fg-address'); valid = false; }
+
+  return valid;
+}
+
+function setError(id) {
+  document.getElementById(id).classList.add('error');
+}
+function clearErrors() {
+  document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+}
+
+/* ============ RINGKASAN PESANAN ============ */
+function renderOrderSummary() {
+  const subtotal = getCartTotal();
+  const shipping = selectedCourier.cost;
+  const total = subtotal + shipping + SERVICE_FEE;
+
+  const itemsHTML = cart.map(item => `
+    <div class="summary-row">
+      <span>${item.name} × ${item.qty}</span>
+      <span>Rp ${(item.price * item.qty).toLocaleString('id-ID')}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('orderSummary').innerHTML = `
+    ${itemsHTML}
+    <div class="summary-row"><span>Subtotal Produk</span><span>Rp ${subtotal.toLocaleString('id-ID')}</span></div>
+    <div class="summary-row"><span>Ongkir (${selectedCourier.name})</span><span>Rp ${shipping.toLocaleString('id-ID')}</span></div>
+    <div class="summary-row"><span>Biaya Layanan</span><span>Rp ${SERVICE_FEE.toLocaleString('id-ID')}</span></div>
+    <div class="summary-row total"><span>Total</span><span>Rp ${total.toLocaleString('id-ID')}</span></div>
+  `;
+}
+
+/* ============ NAVIGASI STEP ============ */
+function goToStep2() {
+  if (!validateStep1()) {
+    showToast('Mohon lengkapi data dengan benar!');
+    return;
+  }
+  goToStep(2);
+  renderPayDetail();
+  updateStep2Summary();
+}
+
+/* ============ UPDATE SUMMARY STEP 2 ============ */
+function updateStep2Summary() {
+  const subtotal = getCartTotal();
+  const shipping = selectedCourier.cost;
+  const total = subtotal + shipping + SERVICE_FEE;
+  document.getElementById('sumSubtotal').textContent = 'Rp ' + subtotal.toLocaleString('id-ID');
+  document.getElementById('sumCourierName').textContent = selectedCourier.name;
+  document.getElementById('sumShipping').textContent = 'Rp ' + shipping.toLocaleString('id-ID');
+  document.getElementById('sumFee').textContent = 'Rp ' + SERVICE_FEE.toLocaleString('id-ID');
+  document.getElementById('sumTotal').textContent = 'Rp ' + total.toLocaleString('id-ID');
+}
+
+/* ============ RENDER DETAIL PEMBAYARAN ============ */
+function renderPayDetail() {
+  const total = getCartTotal() + selectedCourier.cost + SERVICE_FEE;
+  const detail = document.getElementById('payDetail');
+  const vaNumber = '8808' + Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
+
+  let html = '';
+  if (['bca', 'bni', 'mandiri'].includes(selectedPayment)) {
+    const bankNames = { bca: 'BCA', bni: 'BNI', mandiri: 'Mandiri' };
+    html = `
+      <div class="pay-detail">
+        <h4>🏦 Virtual Account ${bankNames[selectedPayment]}</h4>
+        <p style="font-size:0.85rem;color:#bbb;">Nomor Virtual Account kamu:</p>
+        <div class="va-number" id="vaNumber">${vaNumber}</div>
+        <button class="copy-btn" onclick="copyVA('${vaNumber}')">📋 Copy Nomor VA</button>
+        <div class="pay-instruction">
+          <strong style="color:#fff;">Cara Bayar:</strong>
+          <ol>
+            <li>Buka m-Banking / ATM ${bankNames[selectedPayment]}</li>
+            <li>Pilih menu Transfer → Virtual Account</li>
+            <li>Masukkan nomor VA di atas</li>
+            <li>Masukkan nominal <strong style="color:var(--primary);">Rp ${total.toLocaleString('id-ID')}</strong></li>
+            <li>Konfirmasi & simpan bukti transfer</li>
+          </ol>
+        </div>
+      </div>
+    `;
+  } else if (['gopay', 'ovo'].includes(selectedPayment)) {
+    const walletName = selectedPayment === 'gopay' ? 'GoPay' : 'OVO';
+    html = `
+      <div class="pay-detail">
+        <h4>💳 Pembayaran via ${walletName}</h4>
+        <p style="font-size:0.85rem;color:#bbb;margin-bottom:12px;">Klik tombol di bawah untuk melanjutkan pembayaran ke aplikasi ${walletName} kamu.</p>
+        <div style="background:var(--dark);padding:16px;border-radius:12px;text-align:center;">
+          <p style="font-size:0.8rem;color:#888;">Total Pembayaran</p>
+          <div style="font-size:1.6rem;font-weight:900;color:var(--primary);">Rp ${total.toLocaleString('id-ID')}</div>
+        </div>
+        <div class="pay-instruction">
+          <ol>
+            <li>Setelah klik "Bayar Sekarang", kamu akan diarahkan ke aplikasi ${walletName}</li>
+            <li>Konfirmasi nominal pembayaran</li>
+            <li>Masukkan PIN ${walletName}</li>
+            <li>Pembayaran otomatis terverifikasi</li>
+          </ol>
+        </div>
+      </div>
+    `;
+  } else if (selectedPayment === 'qris') {
+    html = `
+      <div class="pay-detail">
+        <h4>📱 Scan QRIS</h4>
+        <p style="font-size:0.85rem;color:#bbb;">Scan QR code di bawah dengan aplikasi e-wallet / m-banking apa saja:</p>
+        <div style="background:#fff;padding:16px;border-radius:16px;display:flex;justify-content:center;margin:14px 0;">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=ShopOrtuskuh-Payment-${vaNumber}" 
+               alt="QRIS" style="width:200px;height:200px;">
+        </div>
+        <p style="text-align:center;font-weight:800;color:var(--primary);font-size:1.2rem;margin-bottom:12px;">Rp ${total.toLocaleString('id-ID')}</p>
+        <div class="pay-instruction">
+          <ol>
+            <li>Buka aplikasi e-wallet / m-banking yang mendukung QRIS</li>
+            <li>Pilih menu Scan QRIS</li>
+            <li>Arahkan kamera ke QR code di atas</li>
+            <li>Konfirmasi pembayaran & masukkan PIN</li>
+          </ol>
+        </div>
+      </div>
+    `;
+  } else if (selectedPayment === 'cod') {
+    html = `
+      <div class="pay-detail">
+        <h4>💵 Cash on Delivery (COD)</h4>
+        <p style="font-size:0.9rem;color:#bbb;line-height:1.7;">
+          Bayar langsung ke kurir saat paket tiba di alamat kamu. 
+          Pastikan kamu menyiapkan uang tunai sebesar:
+        </p>
+        <div style="background:var(--dark);padding:16px;border-radius:12px;text-align:center;margin:12px 0;">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--primary);">Rp ${total.toLocaleString('id-ID')}</div>
+        </div>
+        <div class="pay-instruction" style="padding:12px;background:rgba(255,193,7,0.1);border-radius:12px;border:1px solid rgba(255,193,7,0.3);">
+          ⚠️ <strong style="color:#ffc107;">Perhatian:</strong> COD hanya tersedia untuk wilayah tertentu. Pastikan alamat kamu terjangkau kurir.
+        </div>
+      </div>
+    `;
+  }
+  detail.innerHTML = html;
+}
+
+function copyVA(va) {
+  navigator.clipboard.writeText(va).then(() => {
+    showToast('✅ Nomor VA berhasil dicopy!', true);
+  }).catch(() => {
+    // Fallback
+    const input = document.createElement('input');
+    input.value = va;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    showToast('✅ Nomor VA berhasil dicopy!', true);
+  });
+}
+
+/* ============ PILIH KURIR ============ */
+document.getElementById('courierList').addEventListener('click', (e) => {
+  const option = e.target.closest('.option');
+  if (!option) return;
+  document.querySelectorAll('#courierList .option').forEach(o => o.classList.remove('selected'));
+  option.classList.add('selected');
+  option.querySelector('input').checked = true;
+  selectedCourier = {
+    code: option.dataset.courier,
+    name: option.querySelector('h4').textContent,
+    cost: parseInt(option.dataset.cost)
+  };
+  renderOrderSummary();
+});
+
+/* ============ PILIH METODE PEMBAYARAN ============ */
+document.getElementById('payMethods').addEventListener('click', (e) => {
+  const method = e.target.closest('.pay-method');
+  if (!method) return;
+  document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('selected'));
+  method.classList.add('selected');
+  selectedPayment = method.dataset.method;
+  renderPayDetail();
+});
+
+/* ============ PROSES PEMBAYARAN ============ */
+function processPayment() {
+  const btn = document.getElementById('payBtn');
+  const methodName = paymentLabels[selectedPayment];
+  const total = getCartTotal() + selectedCourier.cost + SERVICE_FEE;
+
+  // Simulasi proses
+  btn.disabled = true;
+  btn.textContent = '⏳ Memproses...';
+
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.textContent = 'Bayar Sekarang 💳';
+
+    // Generate invoice number
+    const invoice = 'SO-' + Date.now().toString().slice(-8) + '-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+
+    // Isi data invoice
+    document.getElementById('invNumber').textContent = invoice;
+    document.getElementById('invName').textContent = document.getElementById('buyerName').value;
+    document.getElementById('invPhone').textContent = document.getElementById('buyerPhone').value;
+    document.getElementById('invCourier').textContent = selectedCourier.name;
+    document.getElementById('invMethod').textContent = methodName;
+    document.getElementById('invTotal').textContent = 'Rp ' + total.toLocaleString('id-ID');
+
+    // Ubah judul sukses jika COD
+    if (selectedPayment === 'cod') {
+      document.getElementById('successTitle').textContent = 'Pesanan COD Dikonfirmasi! 📦';
+      document.getElementById('successMsg').textContent = 'Pesanan kamu sedang disiapkan. Bayar saat paket tiba ya!';
+    } else {
+      document.getElementById('successTitle').textContent = 'Pembayaran Berhasil! 🎉';
+      document.getElementById('successMsg').textContent = 'Pesanan kamu sedang diproses. Terima kasih sudah belanja di ShopOrtuskuh!';
+    }
+
+    goToStep(3);
+    showToast('✅ ' + (selectedPayment === 'cod' ? 'Pesanan COD berhasil!' : 'Pembayaran berhasil!'), true);
+  }, 1500);
+}
+
+/* ============ FINISH ORDER ============ */
+function finishOrder() {
+  cart = [];
+  updateCart();
+  closeCheckout();
+
+  // Reset form
+  document.getElementById('buyerName').value = '';
+  document.getElementById('buyerPhone').value = '';
+  document.getElementById('buyerEmail').value = '';
+  document.getElementById('buyerAddress').value = '';
+  document.getElementById('buyerNote').value = '';
+
+  goToStep(1);
+}
+
+/* ============ TOAST ============ */
+let toastTimer;
+function showToast(msg, success = false) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.toggle('success', success);
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+}
+
+/* ============ NAVBAR SCROLL ============ */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ============ MOBILE MENU ============ */
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+
+/* ============ REVEAL ON SCROLL ============ */
+function observeReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+}
+
+/* ============ ESC KEY CLOSE ============ */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('checkoutModal').classList.contains('show')) closeCheckout();
+    else closeAll();
+  }
+});
+
+/* ============ INIT ============ */
+renderProducts();
+observeReveal();
+</script>
+</body>
+</html>
